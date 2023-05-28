@@ -10,6 +10,7 @@
 
 .me-auto{
   margin: 10px;
+  
 }
 
 .main-bg{
@@ -25,3 +26,7 @@
   background-image: url('./img/Jordan_black.png');
 }
 
+.navbar-brand,
+.nav-link {
+  text-decoration: none;
+}

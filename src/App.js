@@ -8,8 +8,26 @@ import data from './data';
 import './App.css';
 import { useState } from 'react';
 import ListItem from './Components/ListItem';
-import Store from './Components/Store';
-import { Routes, Route, Link } from 'react-router-dom'
+import Store from './Routes/Store';
+import { Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
+
+function HeaderStyle() {
+ 
+  return(
+    <Navbar bg="light" variant="light" style={{}}>
+        <Container>
+       <Link to="/" className="navbar-brand"> <Navbar.Brand href="#home" style={{paddingRight:'1000px', fontWeight:'800'}}>KREAM</Navbar.Brand></Link>
+    <Nav className="me-auto">
+    <Link to="/" className="nav-link"> <Nav.Link href="#home" style={{paddingRight:'30px'}}>Home</Nav.Link></Link>
+    <Link to="/store" className="nav-link" > <Nav.Link href="#features" style={{paddingRight:'30px'}}>stores</Nav.Link></Link>
+    <Link to="/login" className="nav-link">  <Nav.Link href="#pricing" style={{paddingRight:'30px'}}>login</Nav.Link></Link>
+    </Nav> 
+    </Container>
+      </Navbar> 
+  )
+ 
+}
+
 
 function App() {
 
@@ -18,24 +36,9 @@ function App() {
 
   return (
     <div className="App">
+          
+           <HeaderStyle />
      
-    
-
-     <Navbar bg="light" variant="light" style={{}}>
-        <Container>
-          <Navbar.Brand href="#home" style={{paddingRight:'1000px', fontWeight:'800'}}>KREAM</Navbar.Brand>
-          <Nav className="me-auto">
-          <Link to="/"> <Nav.Link href="#home" style={{paddingRight:'30px'}}>shop</Nav.Link></Link>
-
-          <Link to="/store"> <Nav.Link href="#features" style={{paddingRight:'30px'}}>stores</Nav.Link></Link>
-            <Nav.Link href="#pricing" style={{paddingRight:'30px'}}>login</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-    {/* <Link to="/">홈</Link>
-    <Link to="/store">상세페이지</Link> */}
-
       <Routes>
       <Route path="/" element={
         <>
@@ -55,7 +58,7 @@ function App() {
       </>
        } />
       <Route path="/store" element={ <Store /> } />
-      <Route path="/about" element={ <div>어바웃페이지임</div> } />
+      <Route path="/login" element={ <div>로그인페이지임</div> } />
     </Routes>
       
     
