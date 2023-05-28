@@ -12,6 +12,7 @@ import Store from './Routes/Store';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 function HeaderStyle() {
+  //navigate
   let navigate = useNavigate();
 
   return (
