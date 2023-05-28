@@ -30,10 +30,13 @@ function HeaderStyle() {
           </Nav.Link>
           <Nav.Link onClick={() => navigate('/login')} style={{ paddingRight: '30px' }}>
             Login
+           
           </Nav.Link>
         </Nav>
       </Container>
+    
     </Navbar>
+    
   );
 }
 
@@ -49,7 +52,8 @@ function App() {
      
      
              <HeaderStyle />
-     <About />
+           
+    
 
 
       <Routes>
@@ -71,12 +75,16 @@ function App() {
       </>
        } />
       <Route path="/store" element={ <Store /> } />
-      <Route path="/login" element={ <div>로그인페이지임</div> } />
+      <Route path="/login" element={ <div>로그인페이지임 
+        <Outlet></Outlet></div> }>
+        <Route path='one' element={<h3>아이디를 입력하세요</h3>}></Route>
+        <Route path='two' element={<h3>비밀번호를 입력하세요</h3>}></Route>
+        </Route>
 
-      <Route path='/about' element={<About/>}>
+      {/* <Route path='/about' element={<About/>}>
         <Route path='member' element={<div>멤버임</div>}/>
          <Route path='location' element={<About/>}/>
-      </Route>
+      </Route> */}
      
 
     </Routes>
@@ -89,7 +97,7 @@ function App() {
 function About() {
   return (
     <div>
-      <h4>회사 정보임</h4>
+      {/* <h4>회사 정보임</h4> */}
       <Outlet></Outlet>
     </div>
   )
