@@ -9,24 +9,33 @@ import './App.css';
 import { useState } from 'react';
 import ListItem from './Components/ListItem';
 import Store from './Routes/Store';
-import { Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 function HeaderStyle() {
- 
-  return(
+  let navigate = useNavigate();
+
+  return (
     <Navbar bg="light" variant="light" style={{}}>
-        <Container>
-       <Link to="/" className="navbar-brand"> <Navbar.Brand href="#home" style={{paddingRight:'1000px', fontWeight:'800'}}>KREAM</Navbar.Brand></Link>
-    <Nav className="me-auto">
-    <Link to="/" className="nav-link"> <Nav.Link href="#home" style={{paddingRight:'30px'}}>Home</Nav.Link></Link>
-    <Link to="/store" className="nav-link" > <Nav.Link href="#features" style={{paddingRight:'30px'}}>stores</Nav.Link></Link>
-    <Link to="/login" className="nav-link">  <Nav.Link href="#pricing" style={{paddingRight:'30px'}}>login</Nav.Link></Link>
-    </Nav> 
-    </Container>
-      </Navbar> 
-  )
- 
+      <Container>
+        <Navbar.Brand href="#home" style={{ paddingRight: '1000px', fontWeight: '800' }}>
+          KREAM
+        </Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link onClick={() => navigate('/')} style={{ paddingRight: '30px' }}>
+            Home
+          </Nav.Link>
+          <Nav.Link onClick={() => navigate('/store')} style={{ paddingRight: '30px' }}>
+            Stores
+          </Nav.Link>
+          <Nav.Link onClick={() => navigate('/login')} style={{ paddingRight: '30px' }}>
+            Login
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+  );
 }
+
 
 
 function App() {
@@ -36,9 +45,12 @@ function App() {
 
   return (
     <div className="App">
-          
-           <HeaderStyle />
      
+     
+             <HeaderStyle />
+     <About />
+
+
       <Routes>
       <Route path="/" element={
         <>
@@ -59,12 +71,28 @@ function App() {
        } />
       <Route path="/store" element={ <Store /> } />
       <Route path="/login" element={ <div>로그인페이지임</div> } />
+
+      <Route path='/about' element={<About/>}>
+        <Route path='member' element={<div>멤버임</div>}/>
+         <Route path='location' element={<About/>}/>
+      </Route>
+     
+
     </Routes>
       
-    
   
     </div>
   );
 }
+
+function About() {
+  return (
+    <div>
+      <h4>회사 정보임</h4>
+      <Outlet></Outlet>
+    </div>
+  )
+}
+
 
 export default App;
