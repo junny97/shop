@@ -46,7 +46,6 @@ function App() {
 
   let [shoes] = useState(data);
 
-
   return (
     <div className="App">
      
@@ -74,19 +73,7 @@ function App() {
       </div> 
       </>
        } />
-      <Route path="/store" element={ <Store /> } />
-      <Route path="/login" element={ <div>로그인페이지임 
-        <Outlet></Outlet></div> }>
-        <Route path='one' element={<h3>아이디를 입력하세요</h3>}></Route>
-        <Route path='two' element={<h3>비밀번호를 입력하세요</h3>}></Route>
-        </Route>
-
-      {/* <Route path='/about' element={<About/>}>
-        <Route path='member' element={<div>멤버임</div>}/>
-         <Route path='location' element={<About/>}/>
-      </Route> */}
-     
-
+      <Route path="/store/:id" element={ <Store shoes={shoes}/> } />
     </Routes>
       
   
@@ -94,14 +81,6 @@ function App() {
   );
 }
 
-function About() {
-  return (
-    <div>
-      {/* <h4>회사 정보임</h4> */}
-      <Outlet></Outlet>
-    </div>
-  )
-}
 
 
 export default App;
