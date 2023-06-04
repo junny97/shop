@@ -53,21 +53,20 @@ function HeaderStyle() {
 
 function App() {
   let [shoes , setShoes] = useState(data);
-  // let [moreShose, setMoreShose] = useState();
+  let [count, setCount] = useState(1);
 
   function fetchData() {
-    axios.get('https://codingapple1.github.io/shop/data2.json')
+    setCount(count+1)
+    console.log(count);
+    axios.get("https://codingapple1.github.io/shop/data" + count + ".json")
     .then((result)=>{
-      setShoes()
       let copy = [...shoes,...result.data];
       setShoes(copy);
     })
     .catch(()=>{
       console.log('데이터 전송에 실패했습니다')
     });
-
   }
-
 
   return (
     <div className="App">
@@ -92,7 +91,6 @@ function App() {
         />
         {/* <Route path="/store/:id" element={<Store shoes={shoes} />}/>    */}
         <Route path="/store/" element={<Store shoes={shoes}/>}>
-      
         <Route path="/store/:id" element={<Store shoes={shoes} />}/>
         </Route>
       </Routes>
