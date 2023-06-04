@@ -10,7 +10,9 @@ import { useState } from "react";
 import ListItem from "./Components/ListItem";
 import Store from "./Routes/Store";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
+
+
 
 function HeaderStyle() {
   let navigate = useNavigate();
@@ -49,20 +51,22 @@ function HeaderStyle() {
 }
 
 function App() {
-  let [shoes, setShoes] = useState(data);
+  let [shoes , setShoes] = useState(data);
   let [count, setCount] = useState(1);
 
   function fetchData() {
     axios
       .get("https://codingapple1.github.io/shop/data" + (count + 1) + ".json")
       .then((result) => {
+        
         setShoes((prevShoes) => [...prevShoes, ...result.data]);
-        setCount((prevCount) => prevCount + 1);
+        setCount((prevCount) => prevCount +1);
       })
       .catch(() => {
         console.log("데이터 전송에 실패했습니다");
       });
   }
+  
 
   return (
     <div className="App">
@@ -81,11 +85,13 @@ function App() {
                 </div>
               </div>
               <button onClick={fetchData}>버튼</button>
+             
             </>
           }
         />
-        <Route path="/store/" element={<Store shoes={shoes} />}>
-          <Route path="/store/:id" element={<Store shoes={shoes} />} />
+        {/* <Route path="/store/:id" element={<Store shoes={shoes} />}/>    */}
+        <Route path="/store/" element={<Store shoes={shoes}/>}>
+        <Route path="/store/:id" element={<Store shoes={shoes} />}/>
         </Route>
       </Routes>
     </div>
