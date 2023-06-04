@@ -52,14 +52,15 @@ function HeaderStyle() {
 }
 
 function App() {
-  let [shoes] = useState(data);
-  let [moreShose, setMoreShose] = useState();
+  let [shoes , setShoes] = useState(data);
+  // let [moreShose, setMoreShose] = useState();
 
   function fetchData() {
     axios.get('https://codingapple1.github.io/shop/data2.json')
     .then((result)=>{
-      setMoreShose(result.data)
-      
+      setShoes()
+      let copy = [...shoes,...result.data];
+      setShoes(copy);
     })
     .catch(()=>{
       console.log('데이터 전송에 실패했습니다')
@@ -85,15 +86,7 @@ function App() {
                 </div>
               </div>
               <button onClick={fetchData}>버튼</button>
-              {moreShose && (
-                <div className="container">
-                  <div className="row">
-                    {moreShose.map((a, index) => {
-                     return <ListItem key={index} shoes={a} />
-                     })}
-                  </div>
-                 </div>
-              )}
+             
             </>
           }
         />
