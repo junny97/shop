@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import data from "./data";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListItem from "./Components/ListItem";
 import Store from "./Routes/Store";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
@@ -51,16 +51,26 @@ function HeaderStyle() {
 }
 
 function App() {
-  let [shoes , setShoes] = useState(data);
-  let [count, setCount] = useState(1);
+  const [shoes , setShoes] = useState(data);
+  const [count, setCount] = useState(1);
+  const [limit, setLimit] = useState(false);
+
+  function limitAlert() {
+      setLimit(!limit);
+      alert("더이상 보여줄 상품이 없습니다");
+     
+  }
 
   function fetchData() {
+    if (count >= 3) {
+     return limitAlert();
+     
+    }
     axios
       .get("https://codingapple1.github.io/shop/data" + (count + 1) + ".json")
       .then((result) => {
-        
         setShoes((prevShoes) => [...prevShoes, ...result.data]);
-        setCount((prevCount) => prevCount +1);
+        setCount((prevCount ) => prevCount +1 );
       })
       .catch(() => {
         console.log("데이터 전송에 실패했습니다");
