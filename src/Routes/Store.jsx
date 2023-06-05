@@ -7,18 +7,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 export default function Store({ shoes }) {
   const [show, setShow] = useState(true);
 
-  let { id } = useParams();
+  const { id } = useParams();
   const findId = id ? shoes.find((x) => x.id == id) : shoes[0];
-  let [tab, setTab] = useState(0);
-  let [fade2, setFade2] = useState('');
+  const [tab, setTab] = useState(0);
+  const [fade2, setFade2] = useState('');
 
   useEffect(()=>{
-    setTimeout(()=> setFade2('end'), 100)
+    setTimeout(()=> setFade2('end'),100)
     return(()=>{
-      clearInterval(0)
-      setFade2('')
+      setFade2('');
     })
-  },[tab])
+  },[])
+
 
 
   return (
