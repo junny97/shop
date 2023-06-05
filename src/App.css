@@ -32,7 +32,7 @@ button{
   height: 50px;
 }
 
-.start {
+.start, .cotainer .start{
   opacity: 0;
 }
 

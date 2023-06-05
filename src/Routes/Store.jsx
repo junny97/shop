@@ -2,17 +2,28 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
+
 export default function Store({ shoes }) {
   const [show, setShow] = useState(true);
 
   let { id } = useParams();
   const findId = id ? shoes.find((x) => x.id == id) : shoes[0];
   let [tab, setTab] = useState(0);
+  let [fade2, setFade2] = useState('');
+
+  useEffect(()=>{
+    setTimeout(()=> setFade2('end'), 100)
+    return(()=>{
+      clearInterval(0)
+      setFade2('')
+    })
+  },[tab])
 
 
   return (
     <>
-      <div className="container">
+      <div className={`container start ${fade2}`}>
         <div className="row">
           <div className="col-md-6">
             <img src={findId.img} width="100%" />
@@ -48,17 +59,18 @@ export default function Store({ shoes }) {
 }
 
 function TabContent({tab}){
-  let [fade,setFade] = useState('');
-
+ let [fade, setFade] = useState('');
   useEffect(()=>{
-    setTimeout(() => setFade('end'), 100)
+    setTimeout(()=>setFade('end'), 100);
     return ()=>{
       setFade('');
     }
   },[tab])
 
+
+
   return (
-      <div className={`start ${fade}`}>
+      <div className={`start ${fade} `}>
        { [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab] }
        </div>
   )

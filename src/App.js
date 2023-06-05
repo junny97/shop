@@ -76,6 +76,7 @@ function App() {
         console.log("데이터 전송에 실패했습니다");
       });
   }
+
   
 
   return (
@@ -100,12 +101,15 @@ function App() {
           }
         />
         {/* <Route path="/store/:id" element={<Store shoes={shoes} />}/>    */}
-        <Route path="/store/" element={<Store shoes={shoes}/>}>
+        <Route path="/store/" element={
+        <Store shoes={shoes}/>
+        }>
         <Route path="/store/:id" element={<Store shoes={shoes} />}/>
         </Route>
       </Routes>
     </div>
   );
 }
+
 
 export default App;
