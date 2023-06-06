@@ -9,8 +9,10 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import ListItem from "./Components/ListItem";
 import Store from "./Routes/Store";
+import Cart from "./Routes/Cart";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import axios from 'axios';
+
 
 
 
@@ -39,10 +41,10 @@ function HeaderStyle() {
             Stores
           </Nav.Link>
           <Nav.Link
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/cart")}
             style={{ paddingRight: "30px" }}
           >
-            Login
+            Cart
           </Nav.Link>
         </Nav>
       </Container>
@@ -101,11 +103,11 @@ function App() {
           }
         />
         {/* <Route path="/store/:id" element={<Store shoes={shoes} />}/>    */}
-        <Route path="/store/" element={
-        <Store shoes={shoes}/>
+        <Route path="/store/" element={<Store shoes={shoes}/>
         }>
         <Route path="/store/:id" element={<Store shoes={shoes} />}/>
         </Route>
+        <Route path="/cart" element={<Cart/>}/> 
       </Routes>
     </div>
   );

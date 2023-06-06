@@ -52,13 +52,13 @@ export default function Store({ shoes }) {
             }}>버튼2</Nav.Link>
           </Nav.Item>
         </Nav>
-          <TabContent tab={tab} />
+          <TabContent shoes={shoes} tab={tab} />
       </div>
     </>
   );
 }
 
-function TabContent({tab}){
+function TabContent({tab,shoes}){
  let [fade, setFade] = useState('');
   useEffect(()=>{
     setTimeout(()=>setFade('end'), 100);
@@ -71,7 +71,7 @@ function TabContent({tab}){
 
   return (
       <div className={`start ${fade} `}>
-       { [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab] }
+       { [<div>{shoes[0].title}</div>, <div>내용1</div>, <div>내용2</div>][tab] }
        </div>
   )
 }
