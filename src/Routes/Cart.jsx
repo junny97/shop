@@ -16,21 +16,17 @@ export default function Cart() {
           </tr>
         </thead>
         <tbody>
-          <tr>
+        
             {stock.map((a) => {
               return (
-                <>
+                <tr>
                   <td>{a.id}</td>
                   <td>{a.name}</td>
                   <td>{a.count}</td>
-                </>
+                  </tr>
               );
             })}
-            {/* <td>1</td>
-      <td>안녕</td>
-      <td>안녕</td>
-      <td>안녕</td> */}
-          </tr>
+          
         </tbody>
       </Table>
     </div>
