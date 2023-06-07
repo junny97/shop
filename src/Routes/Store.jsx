@@ -61,7 +61,7 @@ export default function Store({ shoes }) {
 function TabContent({tab,shoes}){
  let [fade, setFade] = useState('');
   useEffect(()=>{
-    setTimeout(()=>setFade('end'), 100);
+    setTimeout(()=> setFade('end'), 100);
     return ()=>{
       setFade('');
     }
