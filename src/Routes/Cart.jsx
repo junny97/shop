@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { increase, changeName } from '../store/userSlice';
@@ -7,9 +7,17 @@ import Button from 'react-bootstrap/Button';
 export default function Cart() {
   let state = useSelector((state) => state);
   let dispatch = useDispatch();
+  const [fade, setFade] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => setFade('end'), 100);
+    return () => {
+      setFade('');
+    };
+  }, []);
 
   return (
-    <div>
+    <div className={`start ${fade}`}>
       <h6>
         {state.user.name} {state.user.age}의 장바구니
       </h6>
