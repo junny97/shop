@@ -17,7 +17,7 @@ export default function Store({ shoes }) {
   const [fade2, setFade2] = useState('');
 
   useEffect(() => {
-    setTimeout(() => setFade2('end'), 100);
+    setTimeout(() => setFade2('end'), 150);
     return () => {
       setFade2('');
     };

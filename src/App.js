@@ -18,6 +18,14 @@ function App() {
   const [shoes, setShoes] = useState(data);
   const [count, setCount] = useState(1);
   const [limit, setLimit] = useState(false);
+  const [fade, setFade] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => setFade('end'), 100);
+    return () => {
+      setFade('');
+    };
+  }, []);
 
   function limitAlert() {
     setLimit(!limit);
@@ -40,7 +48,7 @@ function App() {
   }
 
   return (
-    <div className='App'>
+    <div className={`App start ${fade}`}>
       <HeaderStyle />
       <Routes>
         <Route
