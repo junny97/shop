@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { addItem } from '../store';
 import { useDispatch, useSelector } from 'react-redux';
-
+//실험입니다
 export default function Store({ shoes }) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
