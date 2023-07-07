@@ -1,9 +1,3 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import data from './data';
 import './App.css';
 import { useEffect, useState } from 'react';
@@ -32,19 +26,20 @@ function App() {
     alert('더이상 보여줄 상품이 없습니다');
   }
 
-  function fetchData() {
+  async function fetchData() {
     if (count >= 3) {
       return limitAlert();
     }
-    axios
-      .get('https://codingapple1.github.io/shop/data' + (count + 1) + '.json')
-      .then((result) => {
-        setShoes((prevShoes) => [...prevShoes, ...result.data]);
-        setCount((prevCount) => prevCount + 1);
-      })
-      .catch(() => {
-        console.log('데이터 전송에 실패했습니다');
-      });
+    try {
+      const result = await axios.get(
+        'https://codingapple1.github.io/shop/data' + (count + 1) + '.json',
+      );
+
+      setShoes((prevShoes) => [...prevShoes, ...result.data]);
+      setCount((prevCount) => prevCount + 1);
+    } catch (error) {
+      console.log('데이터 전송에 실패했습니다', error);
+    }
   }
 
   return (
