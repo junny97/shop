@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import ListItem from './Components/ListItem';
 import Store from './Routes/Store';
 import Cart from './Routes/Cart';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import HeaderStyle from './Routes/HeaderStyle';
 
@@ -34,7 +34,7 @@ function App() {
       const result = await axios.get(
         'https://codingapple1.github.io/shop/data' + (count + 1) + '.json',
       );
-
+      console.log(result.data);
       setShoes((prevShoes) => [...prevShoes, ...result.data]);
       setCount((prevCount) => prevCount + 1);
     } catch (error) {
@@ -58,7 +58,7 @@ function App() {
                   })}
                 </div>
               </div>
-              <button onClick={fetchData}>버튼</button>
+              <button onClick={fetchData}>상품 더보기</button>
             </>
           }
         />
